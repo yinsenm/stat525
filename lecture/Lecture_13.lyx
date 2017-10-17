@@ -1,0 +1,763 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STAT 525 Lecture 13
+\end_layout
+
+\begin_layout Section
+Hierarchical Models
+\end_layout
+
+\begin_layout Subsection
+Hierarchical / Multilevel methods applications
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Example
+\bar default
+: Home Radon Measurements
+\end_layout
+
+\begin_layout Standard
+EPA collected data on 
+\begin_inset Formula $>$
+\end_inset
+
+80,000 homes in U.S.
+ Goal: Estimate distribution of random levels at all counties 
+\begin_inset Formula $\approx3,000$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Data
+\bar default
+: Houses within counties
+\end_layout
+
+\begin_layout Enumerate
+Log radon for house 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Basement / first floor (house - level)
+\end_layout
+
+\begin_layout Enumerate
+Soil uranium (Country - level)
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Example
+\bar default
+: Election forecasting
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Data
+\bar default
+: States within the US
+\end_layout
+
+\begin_layout Enumerate
+D-party shares of votes for 11 past elections for each state.
+\end_layout
+
+\begin_layout Enumerate
+Previous selection performance by state.
+\end_layout
+
+\begin_layout Enumerate
+National economic trends.
+\end_layout
+
+\begin_layout Enumerate
+National opinions polls.
+\end_layout
+
+\begin_layout Standard
+Standard GLM predictions are reasonable.
+ 
+\end_layout
+
+\begin_layout Itemize
+The corresponding prediction intervals were underestimated variability.
+\end_layout
+
+\begin_layout Itemize
+State level errors are correlated.
+\end_layout
+
+\begin_layout Subsection
+Hierarchical / Multilevel methods uses
+\end_layout
+
+\begin_layout Enumerate
+Learning about treatment effects that vary by group (example: patients within
+ a hospital and students within a school.)
+\end_layout
+
+\begin_layout Enumerate
+Using all the data as much as possible, if you perform inference on group
+ with small samples size.
+\end_layout
+
+\begin_layout Enumerate
+As far as prediction goes, you might have new units with existing group
+ or new groups entirely.
+\end_layout
+
+\begin_layout Enumerate
+You are looking at analysis of structured data.
+ That is students within school or cluster sampling.
+\end_layout
+
+\begin_layout Enumerate
+More efficient inference for regression parameter.
+\end_layout
+
+\begin_layout Enumerate
+You can also include predictors at different levels.
+ 
+\end_layout
+
+\begin_layout Enumerate
+You can accurately account for uncertainty (by modeling correlations.)
+\end_layout
+
+\begin_layout Subsection
+Additional layers of uncertainty
+\end_layout
+
+\begin_layout Standard
+Priors on hyper-parameter 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y & \sim p\left(y\mid\theta\right)\\
+\theta & \sim p\left(\theta;\phi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+or 
+\begin_inset Formula 
+\begin{align*}
+y & \sim p\left(y\mid\theta\right)\\
+\theta & \sim p\left(\theta\mid\phi\right)\\
+\phi & \sim\pi\left(\phi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Example
+\bar default
+: 
+\begin_inset Formula 
+\begin{align*}
+\theta\mid\tau_{\mu} & \sim N\left(0,\tau_{\mu}^{-1}\right)\\
+\tau_{\mu} & \sim\text{Gamma}\left(\dfrac{\nu}{2},\dfrac{\nu}{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is equivalent to the t distribution with 
+\begin_inset Formula $\nu$
+\end_inset
+
+ degree of freedom when you try to marginalize 
+\begin_inset Formula $\tau_{\mu}$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+p\left(\theta\right)\sim t_{\nu}\left(0,1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another way is that 
+\begin_inset Formula 
+\begin{align*}
+y & \sim p\left(y\mid\theta\right)\\
+\theta & \sim p\left(\theta\mid\phi\right)\\
+\phi & \sim\pi\left(\phi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+is equivalent to 
+\begin_inset Formula 
+\begin{align*}
+y & \sim p\left(y\mid\theta\right)\\
+\left(\theta,\phi\right) & \sim p\left(\theta,\phi\right)=p\left(\theta\mid\phi\right)\pi\left(\phi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the posterior distribution is 
+\begin_inset Formula 
+\begin{align*}
+p\left(\theta,\phi\mid y\right) & \propto p\left(y\mid\theta,\phi\right)p\left(\theta,\phi\right)\\
+ & \propto p\left(y\mid\theta\right)p\left(\theta\mid\phi\right)\pi\left(\phi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Full condition: 
+\begin_inset Formula 
+\begin{align*}
+p\left(\theta\mid y,\phi\right) & \propto p\left(y\mid\theta\right)p\left(\theta\mid\phi\right)\\
+p\left(\phi\mid y,\theta\right) & \propto p\left(\theta\mid\phi\right)\pi\left(\phi\right)
+\end{align*}
+
+\end_inset
+
+The above is a construction of a Gibbs sampler.
+\end_layout
+
+\begin_layout Standard
+Alternatively, we can break this posterior distribution this way
+\begin_inset Formula 
+\[
+p\left(\theta,\phi\mid y\right)=p\left(\theta\mid\phi,y\right)p\left(\phi\mid y\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $\phi^{*}\sim p\left(\phi\mid y\right)$
+\end_inset
+
+ (need to marginalize over 
+\begin_inset Formula $\theta$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $\theta^{*}\sim p\left(\theta\mid y,\phi=\phi^{*}\right)$
+\end_inset
+
+ (full conditional distribution)
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Example
+\bar default
+: Gaussian 
+\begin_inset Formula $y\sim N\left(\theta,\phi^{-1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+How to compute 
+\begin_inset Formula $p\left(\phi\mid y\right)$
+\end_inset
+
+ ?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p\left(\phi\mid y\right) & =\int p\left(\phi,\theta\mid y\right)d\theta\\
+ & \propto\int p\left(y\mid\theta\right)p\left(\theta\mid\phi\right)\pi\left(\phi\right)d\theta\\
+ & =\dfrac{p\left(\phi,\theta\mid y\right)}{p\left(\theta\mid\phi,y\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Exchangeability
+\bar default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boldsymbol{\theta}=\left(\theta_{1},\theta_{2},\cdots,\theta_{T}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The joint density 
+\begin_inset Formula $p\left(\theta_{1},\theta_{2},\cdots,\theta_{T}\right)$
+\end_inset
+
+ is invariant to permutations of 
+\begin_inset Formula $\left\{ 1,\cdots,T\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Marginalization exchangeable 
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\theta}\mid\phi\right)=\prod_{j=1}^{T}p\left(\theta_{j}\mid\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+we prove that 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is marginally exchangeable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{\theta}\right) & =\int p\left(\boldsymbol{\theta}\mid\phi\right)p\left(\phi\right)d\phi\\
+ & =\int\left\{ \prod_{j=1}^{T}p\left(\theta_{j}\mid\phi\right)\right\} p\left(\phi\right)d\phi
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Heart transplant data
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Goal
+\bar default
+: Model success rate of heart transplant surgeries in U.S.
+ for many hospitals jointly
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Data
+\bar default
+: for hospitals 
+\begin_inset Formula $h=1,\cdots,H=94$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y_{h} & =\text{\# deaths within 30 days of surgery (for hospital \ensuremath{h})}\\
+X_{h} & =\text{ units of exposure (\# of patients)}\\
+\lambda_{h} & =\text{ mortality rate per unit of exposure}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Model 
+\begin_inset Formula 
+\begin{align*}
+y_{h}\mid X_{h} & \overset{\text{iid}}{\sim}\text{Poisson}\left(X_{h}\lambda_{h}\right)\\
+E\left[y_{h}\mid X_{h}\right] & =\lambda_{h}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+No Pooling:
+\bar default
+ 
+\end_layout
+
+\begin_layout Standard
+Model 
+\begin_inset Formula $\lambda_{h}$
+\end_inset
+
+ independently e.g.
+ 
+\begin_inset Formula 
+\[
+\lambda_{h}\overset{\text{iid}}{\sim}\text{Gamma}\left(\alpha_{h},\beta_{h}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Individual MLE 
+\begin_inset Formula 
+\[
+\hat{\lambda}_{h}=\dfrac{y_{h}}{X_{h}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+can be poor estimates when 
+\begin_inset Formula $X_{h}$
+\end_inset
+
+ small or 
+\begin_inset Formula $y_{h}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+can be highly variable
+\end_layout
+
+\begin_layout Enumerate
+ignore likely dependence among 
+\begin_inset Formula $\left\{ \lambda_{h}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Complete Pooling:
+\bar default
+ All hospital shares the same 
+\begin_inset Formula $\lambda=\lambda_{1}=,\cdots,=\lambda_{H}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y_{h}\mid\lambda & \overset{\text{iid}}{\sim}\text{Poisson}\left(\lambda\right)\\
+E\left[y_{h}\mid X_{h}\right] & =\lambda
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+pooled MLE 
+\begin_inset Formula 
+\[
+\hat{\lambda}=\dfrac{\sum_{h=1}^{H}y_{h}}{\sum_{h=1}^{H}X_{h}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Ignore hospital to hospital variation
+\end_layout
+
+\begin_layout Enumerate
+Strong assumption
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Hierarchical Model:
+\bar default
+ Partially Pooling
+\end_layout
+
+\begin_layout Standard
+Consider the exchangeable priors
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\lambda_{h}\mid\alpha,\mu\right] & \overset{\text{indep.}}{\sim}\text{Gamma}\left(\alpha,\alpha/\mu\right)\\
+E\left[\lambda_{h}\mid\alpha,\mu\right] & =\mu\\
+\text{Var}\left[\lambda_{h}\mid\alpha,\mu\right] & =\mu^{2}/\alpha
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+The posterior for 
+\begin_inset Formula $\lambda_{h}$
+\end_inset
+
+
+\bar default
+
+\begin_inset Formula 
+\[
+\left[\lambda_{h}\mid y_{h},\alpha,\mu\right]\sim\text{Gamma}\left(\alpha+y_{h},\dfrac{\alpha}{\mu}+X_{h}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior mean is 
+\begin_inset Formula 
+\begin{align*}
+E\left[\lambda_{h}\mid y_{h},\alpha,\mu\right] & =\dfrac{\alpha+y_{h}}{a/\mu+X_{h}}\\
+ & =\left(1-\kappa_{h}\right)\dfrac{y_{h}}{X_{h}}+\kappa_{h}\mu
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula 
+\[
+\kappa_{h}=\dfrac{\alpha}{\alpha+X_{h}\mu}\in\left[0,1\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+The posterior for 
+\begin_inset Formula $\mu$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\mu^{-1}\right]\sim\text{Gamma}\left(\alpha_{\mu},\beta_{\mu}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\mu^{-1}\mid\left\{ \lambda_{h}\right\} ,\alpha\right] & \propto\left[\mu^{-1}\right]^{\alpha_{\mu}-1}\exp\left(-\beta_{\mu}\left[\mu^{-1}\right]\right)\prod_{h=1}^{H}\dfrac{\left(\alpha/\mu\right)^{\alpha}}{\Gamma\left(\alpha\right)}\lambda_{h}^{\alpha-1}\exp\left(-\left[\alpha/\mu\right]\lambda_{h}\right)\\
+ & \propto\left[\mu^{-1}\right]^{\alpha_{\mu}+\alpha H-1}\exp\left\{ -\left(\beta_{\mu}+\alpha\sum_{h=1}^{H}\lambda_{h}\right)\left[\mu^{-1}\right]\right\} \\
+ & \sim\text{Gamma}\left(\alpha_{\mu}+\alpha H,\beta_{\mu}+\alpha\sum_{h=1}^{H}\lambda_{h}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the posterior mean is 
+\begin_inset Formula 
+\[
+E\left[\mu\mid\left\{ \lambda_{h}\right\} ,\alpha\right]=\dfrac{\beta_{\mu}+\alpha\sum_{h=1}^{H}\lambda_{h}}{\alpha_{\mu}+\alpha H-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So if 
+\begin_inset Formula $\beta_{\mu}\rightarrow0$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha_{\mu}=1$
+\end_inset
+
+, then 
+\begin_inset Formula 
+\[
+E\left[\mu\mid\cdots\right]\approx\dfrac{\sum_{h=1}^{H}\lambda_{h}}{H}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

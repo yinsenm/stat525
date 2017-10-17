@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>STAT 545 Course Website</title>
+    <description>STAT 545 GLM and CATEGORICAL DATA ANALYSIS course website for Fall 2015</description>
+    <link>http://yinsenm.github.io/stat545/</link>
+    <atom:link href="http://yinsenm.github.io/stat545/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Welcome to STAT 545</title>
+        <description>&lt;p&gt;Welcome to STAT 545, GLM &amp;amp; CATEGORICAL DATA ANALYSIS!&lt;/p&gt;
+
+&lt;p&gt;This is the website you can find information such as homework, deadline and solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Instructors:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://faculty.mdanderson.org/Yisheng_Li/Default.asp?SNID=1486718363&quot;&gt;Yisheng Li&lt;/a&gt;, Ph.D. &lt;br /&gt;
+The University of Texas MD Anderson Cancer Center &lt;br /&gt;
+E-mail: &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#121;&amp;#115;&amp;#108;&amp;#105;&amp;#064;&amp;#109;&amp;#100;&amp;#097;&amp;#110;&amp;#100;&amp;#101;&amp;#114;&amp;#115;&amp;#111;&amp;#110;&amp;#046;&amp;#111;&amp;#114;&amp;#103;&quot;&gt;&amp;#121;&amp;#115;&amp;#108;&amp;#105;&amp;#064;&amp;#109;&amp;#100;&amp;#097;&amp;#110;&amp;#100;&amp;#101;&amp;#114;&amp;#115;&amp;#111;&amp;#110;&amp;#046;&amp;#111;&amp;#114;&amp;#103;&lt;/a&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://faculty.mdanderson.org/Liang_Li/Default.asp?SNID=727795013&quot;&gt;Liang Li&lt;/a&gt;, Ph.D. &lt;br /&gt;
+The University of Texas MD Anderson Cancer Center &lt;br /&gt;
+E-mail: &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#076;&amp;#076;&amp;#105;&amp;#049;&amp;#053;&amp;#064;&amp;#109;&amp;#100;&amp;#097;&amp;#110;&amp;#100;&amp;#101;&amp;#114;&amp;#115;&amp;#111;&amp;#110;&amp;#046;&amp;#111;&amp;#114;&amp;#103;&quot;&gt;&amp;#076;&amp;#076;&amp;#105;&amp;#049;&amp;#053;&amp;#064;&amp;#109;&amp;#100;&amp;#097;&amp;#110;&amp;#100;&amp;#101;&amp;#114;&amp;#115;&amp;#111;&amp;#110;&amp;#046;&amp;#111;&amp;#114;&amp;#103;&lt;/a&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TA:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://yinsenm.github.io&quot;&gt;Yinsen Miao&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Office: DCH 2090&lt;/li&gt;
+  &lt;li&gt;Email: &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#121;&amp;#109;&amp;#049;&amp;#049;&amp;#064;&amp;#114;&amp;#105;&amp;#099;&amp;#101;&amp;#046;&amp;#101;&amp;#100;&amp;#117;&quot;&gt;&amp;#121;&amp;#109;&amp;#049;&amp;#049;&amp;#064;&amp;#114;&amp;#105;&amp;#099;&amp;#101;&amp;#046;&amp;#101;&amp;#100;&amp;#117;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Office Hours:
+    &lt;ul&gt;
+      &lt;li&gt;Wednesday 9:30 to 11:30 am&lt;/li&gt;
+      &lt;li&gt;DCH 3092&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 26 Aug 2015 00:00:00 -0400</pubDate>
+        <link>http://yinsenm.github.io/stat545/2015/08/26/Welcome/</link>
+        <guid isPermaLink="true">http://yinsenm.github.io/stat545/2015/08/26/Welcome/</guid>
+      </item>
+    
+  </channel>
+</rss>

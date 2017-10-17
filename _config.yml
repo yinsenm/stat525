@@ -1,0 +1,13 @@
+# Site settings
+title: STAT 525 Course Website
+descrp: Bayesian Analysis
+email: yinsen.miao@rice.edu
+description: "STAT 525 Bayesian Analysis course website for Fall 2017"
+baseurl: "/stat525"
+url: "http://yinsenm.github.io"
+
+paginate:  5
+
+# Build settings
+markdown: kramdown
+permalink: pretty
