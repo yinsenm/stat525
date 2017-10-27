@@ -1,0 +1,807 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STAT 525 Lecture 17
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbi}{\mathbb{I}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbe}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mvar}{\text{Var}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\trace}{\text{Trace}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cov}{\text{Cov}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\diag}{\text{diag}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poisd}{\text{Poisson}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\gammad}{\text{Gamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\invgammad}{\text{InverseGamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logd}{\text{Logarithmic}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\betad}{\text{Beta}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logit}{\text{logit}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Last time 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{y} & \sim N\left(\boldsymbol{X\beta},\sigma^{2}\mathbb{I}\right)\\
+\boldsymbol{\beta} & \sim N\left(\boldsymbol{\mu}_{\beta},\boldsymbol{\Sigma}_{\beta}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boldsymbol{\mu}_{\beta}=0\Rightarrow\begin{cases}
+\text{g-prior} & \boldsymbol{\Sigma}_{\beta}=g\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\\
+\text{ridge} & \boldsymbol{\Sigma}_{\beta}=\sigma_{\beta}^{2}\mathbb{I}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\tau=\sigma^{-2}$
+\end_inset
+
+ then 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{y} & \sim N\left(\boldsymbol{X}\boldsymbol{\beta},\tau^{-1}\mathbb{I}_{n}\right)\\
+\boldsymbol{\beta} & \sim N\left(\boldsymbol{\mu}_{\beta},\tau^{-1}\boldsymbol{\Sigma}_{\beta}\right)\\
+\tau & \sim\gammad\left(\alpha_{\tau},\beta_{\tau}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the posterior would be 
+\begin_inset Formula 
+\begin{align*}
+p\left(\tau\mid\boldsymbol{y},\boldsymbol{X},\boldsymbol{\beta}\right) & \propto p\left(\tau,\boldsymbol{\beta}\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\beta},\tau\right)\\
+ & =p\left(\tau\right)p\left(\boldsymbol{\beta}\mid\tau\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\beta},\tau\right)\\
+ & \propto\tau^{\alpha_{\tau}-1}\exp\left(-\beta_{\tau}\tau\right)\left|2\pi\tau^{-1}\mathbb{I}_{n}\right|^{-\frac{1}{2}}\exp\left(-\dfrac{1}{2}\tau\left\Vert \boldsymbol{y}-\boldsymbol{X\beta}\right\Vert ^{2}\right)\times\\
+ & \left|2\pi\tau^{-1}\boldsymbol{\Sigma}_{\beta}\right|^{-\frac{1}{2}}\exp\left(-\dfrac{1}{2}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)^{T}\left[\tau^{-1}\boldsymbol{\Sigma}_{\beta}\right]^{-1}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)\right)\\
+ & \propto\tau^{\alpha_{\tau}+\frac{n}{2}+\frac{p}{2}-1}\exp\left(-\tau\left[\beta_{\tau}+\dfrac{1}{2}\left\Vert \boldsymbol{y}-\boldsymbol{X\beta}\right\Vert ^{2}+\dfrac{1}{2}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)^{T}\left[\boldsymbol{\Sigma}_{\beta}\right]^{-1}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, 
+\begin_inset Formula 
+\begin{align*}
+\tilde{\alpha}_{\tau} & =\alpha_{\tau}+\frac{n}{2}+\frac{p}{2}\\
+\tilde{\beta}_{\tau} & =\beta_{\tau}+\dfrac{1}{2}\left\Vert \boldsymbol{y}-\boldsymbol{X\beta}\right\Vert ^{2}+\dfrac{1}{2}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)^{T}\left[\boldsymbol{\Sigma}_{\beta}\right]^{-1}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Instead if we don't have 
+\begin_inset Formula $\tau$
+\end_inset
+
+ in the prior on beta then 
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\sim N\left(\boldsymbol{\mu}_{\beta},\boldsymbol{\Sigma}_{\beta}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\tilde{\alpha}_{\tau} & =\alpha_{\tau}+\frac{n}{2}\\
+\tilde{\beta}_{\tau} & =\beta_{\tau}+\dfrac{1}{2}\left\Vert \boldsymbol{y}-\boldsymbol{X\beta}\right\Vert ^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we have the following 
+\begin_inset Formula $g$
+\end_inset
+
+ prior 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\mu}_{\beta} & =0\\
+\boldsymbol{\Sigma}_{\beta} & =g\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After marginizing 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ out, we have 
+\begin_inset Formula 
+\[
+\left[\tau\mid\boldsymbol{y},\boldsymbol{X}\right]\sim\gammad\left(\alpha_{\tau}+\dfrac{n}{2},\beta_{\tau}+SSR_{g}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+SSR_{g} & =\boldsymbol{y}^{T}\left[\mathbb{I}_{n}-\dfrac{g}{g+1}\boldsymbol{X}\left(\boldsymbol{X}^{T}\boldsymbol{X}\right)^{-1}\boldsymbol{X}\right]\boldsymbol{y}\\
+ & =\left\Vert y\right\Vert ^{2}-\dfrac{g}{g+1}\boldsymbol{y}^{T}\left[\boldsymbol{X}\hat{\boldsymbol{\beta}}_{\text{ols}}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Prediction 
+\end_layout
+
+\begin_layout Standard
+Given new 
+\begin_inset Formula $\tilde{\boldsymbol{X}}$
+\end_inset
+
+ to predict 
+\begin_inset Formula $\tilde{\boldsymbol{y}}$
+\end_inset
+
+ or 
+\begin_inset Formula $p\left(\tilde{\boldsymbol{y}}\mid\boldsymbol{y}\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Sources of uncertainty
+\end_layout
+
+\begin_layout Enumerate
+Model variability 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ (not accounted for by 
+\begin_inset Formula $\boldsymbol{X}\boldsymbol{\beta}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+Posterior uncertainty in 
+\begin_inset Formula $p\left(\boldsymbol{\beta},\sigma^{2}\mid\boldsymbol{y}\right)$
+\end_inset
+
+ (due to finite sample size)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\tilde{\boldsymbol{y}}\mid\tilde{\boldsymbol{X}},\beta,\sigma^{2}\right]\sim N\left(\tilde{\boldsymbol{X}}\boldsymbol{\beta},\sigma^{2}\mathbb{I}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where we simulate 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{\boldsymbol{y}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Bayesian Robustness
+\end_layout
+
+\begin_layout Standard
+Instead of 
+\begin_inset Formula $\epsilon_{i}\overset{\text{iid}}{\sim}N\left(0,\sigma^{2}\right)$
+\end_inset
+
+ try 
+\begin_inset Formula $\epsilon_{i}\overset{\text{iid}}{\sim}t_{\upsilon}\left(0,\sigma^{2}\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is the degree of freedom.
+ Can be augmented as 
+\begin_inset Formula 
+\begin{align*}
+\epsilon_{i}\mid\xi_{i} & \overset{\text{iid}}{\sim}N\left(0,\sigma^{2}/\xi_{i}\right)\\
+\xi_{i} & \overset{\text{iid}}{\sim}\gammad\left(\frac{\nu}{2},\frac{\nu}{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Scaled Mixture of Gaussian)
+\end_layout
+
+\begin_layout Enumerate
+(Asymmertic) Laplace
+\end_layout
+
+\begin_layout Enumerate
+Skew normal
+\end_layout
+
+\begin_layout Enumerate
+Discrete mixtures of Gaussian
+\end_layout
+
+\begin_layout Section
+Shrinkage and penalized regression
+\end_layout
+
+\begin_layout Itemize
+Many predictors (
+\begin_inset Formula $p\gg n$
+\end_inset
+
+) but may be unrelated to 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Including unnecessary predictors.
+ Can cause poor performance.
+\end_layout
+
+\begin_layout Itemize
+Nice to represent a small sets of predictors.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Key trade off for several methods
+\end_layout
+
+\begin_layout Itemize
+Discrete (or two groups model)
+\begin_inset Formula 
+\[
+p\left(\beta_{j}=0\right)>0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Can select 
+\begin_inset Formula $\left\{ j:\beta_{j}\ne0\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Problem: computationally feasible for moderate 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Continuous (One group)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+no true zero but small 
+\begin_inset Formula $\left|\beta_{j}\right|\approx0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Scalable 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Penalized Regression
+\end_layout
+
+\begin_layout Standard
+Setting: 
+\begin_inset Formula 
+\[
+\hat{\boldsymbol{\beta}}=\arg\min_{\boldsymbol{\beta}}\mathcal{L}\left(\boldsymbol{y},\boldsymbol{X\beta}\right)+\lambda P\left(\boldsymbol{\beta}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mathcal{L}\left(\boldsymbol{y},\boldsymbol{X\beta}\right)$
+\end_inset
+
+ is the loss function (corresponding to (-log) likelihood) and 
+\begin_inset Formula $P\left(\boldsymbol{\beta}\right)$
+\end_inset
+
+ is penalty (corresponding to (-log) prior).
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+control the trade off (corresponding to prior precision)
+\begin_inset Formula 
+\begin{align*}
+\lambda\rightarrow0 & \mathcal{L}\text{ dominates}\\
+\lambda\rightarrow\infty & P\text{ dominates}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lasso Regression
+\begin_inset Formula 
+\[
+\hat{\boldsymbol{\beta}}_{L}=\arg\min_{\boldsymbol{\beta}}\mathcal{L}\left(\boldsymbol{y},\boldsymbol{X\beta}\right)+\lambda\sum_{j=1}^{p}\left|\beta_{j}\right|
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+unpenalized intercept (
+\begin_inset Formula $\bar{\boldsymbol{y}}$
+\end_inset
+
+ centered)
+\end_layout
+
+\begin_layout Enumerate
+variable 
+\begin_inset Formula $X$
+\end_inset
+
+ should be on the same scale
+\end_layout
+
+\begin_layout Enumerate
+penalized MLE (post mode) produces sparse solution.
+\end_layout
+
+\begin_layout Subsection
+Bayesian Lasso (Park & Casella 2008)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\beta_{j}\mid\sigma^{2},\lambda\right]\overset{\text{iid}}{\sim}DE\left(\lambda/\sigma\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+p\left(\beta_{j}\right)=\dfrac{\lambda}{2\sigma}\exp\left(-\lambda\left|\beta_{j}\right|/\sigma\right)
+\]
+
+\end_inset
+
+notice that 
+\begin_inset Formula 
+\begin{align*}
+-\log P\left(\boldsymbol{\beta}\right) & =-\sum_{j=1}^{p}\log\left(p\left(\beta_{j}\right)\right)\\
+ & =A^{-1}\sum_{j=1}^{p}\left|\beta_{j}\right|
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is equivalent to 
+\begin_inset Formula 
+\begin{align*}
+\left[\beta_{j}\mid\sigma,\eta_{j}\right] & \overset{\text{indep}}{\sim}N\left(0,\sigma^{2}/\eta_{j}\right)\\
+\left[\eta_{j}^{-1}\mid\lambda\right] & \overset{\text{indep}}{\sim}Exp\left(\lambda^{2}/2\right)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\sim N\left(0,\boldsymbol{\Sigma}_{\beta}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\boldsymbol{\Sigma}_{\beta}=\left[\begin{array}{cccc}
+\sigma^{2}/\eta_{1}\\
+ & \sigma^{2}/\eta_{2}\\
+\\
+ &  &  & \sigma^{2}/\eta_{p}
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\eta_{j}$
+\end_inset
+
+ is inverse-Gaussian
+\end_layout
+
+\begin_layout Itemize
+do not get true zeros in 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+but do get SEs (even when 
+\begin_inset Formula $\left|\beta_{j}\right|\approx0$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection
+Horseshoe prior 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left[\beta_{j}\mid\sigma^{2},\lambda_{j}^{2}\right] & \overset{\text{indep}}{\sim}N\left(-,\sigma^{2}\lambda_{j}^{2}\right)\\
+\lambda_{j} & \overset{\text{indep}}{\sim}C^{+}\left(0,A\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Priors for 
+\begin_inset Formula $A$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A\sim C^{+}\left(0,1\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A\sim\text{Uniform}\left(0,1\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\beta} & \sim N\left(0,\boldsymbol{\Sigma}_{\beta}\right)\\
+\boldsymbol{\Sigma}_{\beta} & =\diag\left(\sigma^{2}\lambda_{1},\sigma^{2}\lambda_{2},\cdots,\sigma^{2}\lambda_{p}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comments
+\end_layout
+
+\begin_layout Itemize
+Many priors in this family: global local priors
+\begin_inset Formula 
+\[
+\beta_{j}\sim N\left(0,\sigma^{2}A^{2}\lambda_{j}^{2}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p\left(A,\lambda_{1},\cdots,\lambda_{p}\right)$
+\end_inset
+
+ determines behavior of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Do we need 
+\begin_inset Formula $\beta_{j}=0$
+\end_inset
+
+ or is 
+\begin_inset Formula $\left|\beta_{j}\right|\approx0$
+\end_inset
+
+ good enough?
+\end_layout
+
+\begin_layout Itemize
+Threshold procedures:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Recall 
+\begin_inset Formula 
+\[
+\kappa_{j}=\dfrac{1}{1+\lambda_{j}^{2}}\sim\betad\left(\dfrac{1}{2},\dfrac{1}{2}\right)
+\]
+
+\end_inset
+
+is the amount of shrinkage to zero
+\end_layout
+
+\begin_layout Itemize
+Reasonable:
+\begin_inset Formula 
+\[
+\hat{b}_{j}=\mathbb{I}\left(\kappa_{j}<\dfrac{1}{2}\right)\hat{\beta}_{j}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\hat{\beta}_{j}$
+\end_inset
+
+ is the posterior mean.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

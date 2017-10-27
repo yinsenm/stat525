@@ -1,0 +1,882 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STAT 525 Lecture 16
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbi}{\mathbb{I}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbe}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mvar}{\text{Var}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\trace}{\text{Trace}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cov}{\text{Cov}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\diag}{\text{diag}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poisd}{\text{Poisson}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\gammad}{\text{Gamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\invgammad}{\text{InverseGamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logd}{\text{Logarithmic}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\betad}{\text{Beta}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logit}{\text{logit}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Topics
+\end_layout
+
+\begin_layout Enumerate
+Linear regression
+\end_layout
+
+\begin_layout Enumerate
+Multiple testing
+\end_layout
+
+\begin_layout Enumerate
+Prediction
+\end_layout
+
+\begin_layout Standard
+Question: How does 
+\begin_inset Formula $y$
+\end_inset
+
+ vary as a function of 
+\begin_inset Formula $X$
+\end_inset
+
+? 
+\end_layout
+
+\begin_layout Standard
+Interested in 
+\begin_inset Formula $p\left(\boldsymbol{y}\mid\boldsymbol{X},\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume 
+\begin_inset Formula $\left(y_{i},\boldsymbol{x}_{i}\right)_{i=1}^{n}$
+\end_inset
+
+ are exchangeable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n=\text{\# of observations}$
+\end_inset
+
+, 
+\begin_inset Formula $p=\text{\# of predictors}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Linear model
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mbe\left[y_{i}\mid\boldsymbol{x},\boldsymbol{\beta}\right] & =\beta_{1}x_{1}+\cdots+\beta_{p}x_{p}\\
+ & =\boldsymbol{x}^{T}\boldsymbol{\beta}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ordinary linear model 
+\begin_inset Formula 
+\begin{align*}
+\mvar\left[y_{i}\mid\boldsymbol{x},\boldsymbol{\theta}\right] & =\sigma^{2}\\
+\boldsymbol{\theta} & =\left[\begin{array}{cc}
+\boldsymbol{\beta} & \sigma\end{array}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Normal linear model 
+\begin_inset Formula 
+\[
+\boldsymbol{y}_{n\times1}=\boldsymbol{X}_{n\times p}\boldsymbol{\beta}_{p\times1}+\boldsymbol{\epsilon}_{n\times1}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+\epsilon_{i} & \overset{\text{iid}}{\sim}N\left(0,\sigma^{2}\right)\\
+\boldsymbol{\epsilon} & \sim MVN\left(0,\sigma^{2}\mathbb{I}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Key points 
+\end_layout
+
+\begin_layout Enumerate
+Flexible choices for 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Transformation of 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ and / or 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ for linearity and Gaussian of 
+\begin_inset Formula $\boldsymbol{\epsilon}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Generation for other variance model.
+\end_layout
+
+\begin_layout Section
+Bayesian Conditional Modeling
+\end_layout
+
+\begin_layout Standard
+Data 
+\begin_inset Formula $\left(\boldsymbol{y},\boldsymbol{X}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Likelihood: 
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{y},\boldsymbol{X}\mid\boldsymbol{\theta},\psi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Priors
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\theta},\psi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Posterior 
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\theta},\psi\mid\boldsymbol{y},\boldsymbol{X}\right)=p\left(\psi\mid\boldsymbol{\theta},\boldsymbol{y},\boldsymbol{X}\right)p\left(\boldsymbol{\theta}\mid\boldsymbol{y},\boldsymbol{X}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume 
+\begin_inset Formula 
+\[
+p\left(\psi\mid\boldsymbol{\theta},\boldsymbol{y},\boldsymbol{X}\right)=p\left(\psi\mid\boldsymbol{X}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Prior independence: 
+\begin_inset Formula $p\left(\boldsymbol{\theta},\psi\right)=p\left(\boldsymbol{\theta}\right)p\left(\psi\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\psi$
+\end_inset
+
+ conditional independent of 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ given 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\theta},\psi\mid\boldsymbol{y},\boldsymbol{X}\right)=p\left(\psi\mid\boldsymbol{X}\right)p\left(\boldsymbol{\theta}\mid\boldsymbol{y},\boldsymbol{X}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Posterior inference for 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ only need the density 
+\begin_inset Formula $p\left(\boldsymbol{\theta}\mid\boldsymbol{y},\boldsymbol{X}\right)$
+\end_inset
+
+ or 
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\theta}\mid\boldsymbol{y},\boldsymbol{X}\right)\propto p\left(\boldsymbol{y}\mid\boldsymbol{\theta},\boldsymbol{X}\right)p\left(\boldsymbol{\theta}\mid\boldsymbol{X}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Commentary on the intercept:
+\end_layout
+
+\begin_layout Enumerate
+if 
+\begin_inset Formula $\boldsymbol{x}_{i1}=1$
+\end_inset
+
+ for all 
+\begin_inset Formula $i$
+\end_inset
+
+, usually assume 
+\begin_inset Formula $p\left(\beta_{1}\right)\propto1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Usually center and scale 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ and columns of 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+y_{i}=\dfrac{y_{i}-\text{mean}\left(\boldsymbol{y}\right)}{\text{sd}\left(\boldsymbol{y}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+General Case
+\end_layout
+
+\begin_layout Standard
+The prior on 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\sim\text{MVN}\left(\boldsymbol{\mu}_{\beta},\boldsymbol{\Sigma}_{\beta}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then the likelihood is 
+\begin_inset Formula 
+\[
+\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\beta},\sigma^{2}\sim MVN\left(\boldsymbol{X}\boldsymbol{\beta},\sigma^{2}\mathbb{I}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior is 
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2}\right) & \propto p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\beta},\sigma^{2}\right)p\left(\boldsymbol{\beta}\right)\\
+ & \propto\left|2\pi\sigma^{2}\mathbb{I}\right|^{-\frac{1}{2}}\exp\left(-\dfrac{1}{2}\left(\boldsymbol{y}-\boldsymbol{X\beta}\right)^{T}\left(\sigma^{2}\mathbb{I}\right)^{-1}\left(\boldsymbol{y}-\boldsymbol{X\beta}\right)\right)\times\\
+ & \left|2\pi\Sigma_{\boldsymbol{\beta}}\right|^{-\frac{1}{2}}\exp\left(-\dfrac{1}{2}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)^{T}\left(\Sigma_{\boldsymbol{\beta}}\right)^{-1}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)\right)\\
+ & \propto\exp\left(-\dfrac{1}{2}\sigma^{-2}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)^{T}\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right)+\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)^{T}\boldsymbol{\Sigma}_{\beta}\left(\boldsymbol{\beta}-\boldsymbol{\mu}_{\beta}\right)\right)\\
+ & \propto\exp\left(-\dfrac{1}{2}\left(\boldsymbol{\beta}^{T}\boldsymbol{Q}_{\beta}\boldsymbol{\beta}-2\boldsymbol{\beta}\boldsymbol{l}_{\beta}\right)\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{Q}_{\beta} & =\sigma^{-2}\boldsymbol{X}^{T}\boldsymbol{X}+\boldsymbol{\Sigma}_{\beta}^{-1}\\
+\boldsymbol{l}_{\beta} & =\sigma^{-2}\boldsymbol{X}\boldsymbol{y}+\boldsymbol{\Sigma}_{\beta}^{-1}\boldsymbol{\mu}_{\beta}
+\end{align*}
+
+\end_inset
+
+Therefore, the posterior for 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\left[\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2}\right]\sim MVN\left(\boldsymbol{Q}_{\beta}^{-1}\boldsymbol{l}_{\beta},\boldsymbol{Q}_{\beta}^{-1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+g-prior (Zeller 1986)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\boldsymbol{\beta}\mid\sigma^{2},\boldsymbol{X},g\right]\sim MVN\left(\boldsymbol{\mu}_{\beta},\underbrace{g\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}}_{\boldsymbol{\Sigma}_{\beta}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We plug the new 
+\begin_inset Formula $\boldsymbol{\mu}_{\beta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{\Sigma}_{\beta}$
+\end_inset
+
+ into the section 4, then 
+\begin_inset Formula 
+\begin{align*}
+\hat{\boldsymbol{Q}}_{\beta} & =\sigma^{-2}\boldsymbol{X}^{T}\bm{X}+g^{-1}\sigma^{-2}\bm{X}^{T}\bm{X}\\
+ & =\sigma^{-2}\bm{X}^{T}\bm{X}\left[1+g^{-1}\right]\\
+\hat{\bm{l}}_{\beta} & =\sigma^{-2}\bm{X}^{T}\bm{y}+g^{-1}\sigma^{-2}\bm{X}^{T}\bm{X}\bm{\mu}_{\beta}\\
+ & =\sigma^{-2}\bm{X}^{T}\left(\bm{y}+g^{-1}\bm{X}\bm{\mu}_{\beta}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore we have 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{Q}_{\beta}^{-1} & =\dfrac{g}{g+1}\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\\
+\boldsymbol{Q}_{\beta}^{-1}\boldsymbol{l}_{\beta} & =\dfrac{g}{g+1}\cancel{\sigma^{2}}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\cancel{\sigma^{-2}}\bm{X}^{T}\left(\bm{y}+g^{-1}\bm{X}\bm{\mu}_{\beta}\right)\\
+ & =\dfrac{g}{g+1}\underbrace{\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\boldsymbol{X}^{T}\boldsymbol{y}}_{\hat{\boldsymbol{\beta}}_{\text{ols}}}+\dfrac{1}{g+1}\boldsymbol{\mu}_{\beta}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior expectation for 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\begin{align*}
+\mbe\left[\boldsymbol{\beta}\mid\boldsymbol{X},\boldsymbol{y},\sigma^{2},g\right] & =\left(1-\kappa\right)\hat{\boldsymbol{\beta}}+\kappa\boldsymbol{\mu}_{\beta}\\
+\kappa & =\dfrac{1}{g+1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior for 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\left[\boldsymbol{\beta}\mid\boldsymbol{X},\boldsymbol{y},\sigma^{2},g\right]\sim MVN\left(\left(1-\kappa\right)\boldsymbol{\beta}+\kappa\boldsymbol{\mu}_{\beta},\dfrac{g}{g+1}\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Invariance of 
+\begin_inset Formula $g$
+\end_inset
+
+ prior 
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{X}^{*}=\boldsymbol{X}\boldsymbol{H}$
+\end_inset
+
+ for some 
+\begin_inset Formula $p\times p$
+\end_inset
+
+ 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Posterior for 
+\begin_inset Formula $\boldsymbol{\beta}\mid\boldsymbol{X},\boldsymbol{y}$
+\end_inset
+
+ shall be the same as 
+\begin_inset Formula $\boldsymbol{H}\boldsymbol{\beta}^{*}\mid y,\boldsymbol{X}^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+stratify when 
+\begin_inset Formula $\boldsymbol{\mu}_{\beta}\rightarrow0$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{\Sigma}_{\beta}=\kappa\left(\boldsymbol{X}^{T}X\right)^{-1}$
+\end_inset
+
+ for 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Flat prior 
+\end_layout
+
+\begin_layout Standard
+A common non-informative choice is 
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\beta},\sigma^{2}\right)=p\left(\boldsymbol{\beta}\mid\sigma^{2}\right)p\left(\sigma^{2}\right)\propto\dfrac{1}{\sigma^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Special case of 
+\begin_inset Formula $g$
+\end_inset
+
+ prior (in the posterior) when 
+\begin_inset Formula $g\rightarrow\infty$
+\end_inset
+
+ and 
+\begin_inset Formula $p\left(\sigma^{2}\right)\propto\dfrac{1}{\sigma^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+when 
+\begin_inset Formula $g\rightarrow\infty$
+\end_inset
+
+ then 
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2}\sim\left(\hat{\boldsymbol{\beta}}_{\text{ols}},\sigma^{2}\left[\boldsymbol{X}^{T}\boldsymbol{X}\right]^{-1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Penalized regression
+\end_layout
+
+\begin_layout Subsection
+Ridge regression
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $\beta_{j}\mid\sigma_{\beta}\overset{\text{iid}}{\sim}N\left(0,\sigma_{\beta}^{2}\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $j=1,\cdots,p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The log-posterior (up to an additive constant) is 
+\begin_inset Formula 
+\begin{align*}
+\log p\left(\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2},\sigma_{\beta}^{2}\right) & \propto\log p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\beta},\sigma^{2},\sigma_{\beta}^{2}\right)+\log p\left(\boldsymbol{\beta}\right)\\
+ & \propto-\dfrac{1}{2\sigma^{2}}\sum_{i=1}^{n}\left\Vert y_{i}-\boldsymbol{x}_{i}^{T}\boldsymbol{\beta}\right\Vert ^{2}+\sum_{j=1}^{p}\log p\left(\beta_{j}\right)\\
+ & \propto-\dfrac{1}{2\sigma^{2}}\left\Vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right\Vert ^{2}-\dfrac{1}{2\sigma_{\beta}^{2}}\sum_{j=1}^{p}\beta_{j}^{2}\\
+ & \propto-\dfrac{1}{2\sigma^{2}}\underbrace{\left\{ \left\Vert \boldsymbol{y-}\boldsymbol{X}\boldsymbol{\beta}\right\Vert ^{2}+\lambda\sum_{j=1}^{p}\beta_{j}^{2}\right\} }_{\text{Ridge Regression}}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\lambda=\dfrac{\sigma^{2}}{\sigma_{\beta}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The posterior expectation for 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+\mbe\left[\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2},\lambda\right]=\underbrace{\left[\boldsymbol{X}^{T}\boldsymbol{X}+\lambda\mathbb{I}\right]^{-1}\boldsymbol{X}^{T}\boldsymbol{y}}_{\text{Ridge Estimator}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the tuning parameter for freq.
+ For Bayesian 
+\begin_inset Formula $\lambda=\frac{\sigma^{2}}{\sigma_{\beta}^{2}}$
+\end_inset
+
+ .
+ We just need to estimate 
+\begin_inset Formula $\sigma_{\beta}^{2}$
+\end_inset
+
+ and put a prior on 
+\begin_inset Formula $\sigma_{\beta}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Key points
+\end_layout
+
+\begin_layout Enumerate
+Posterior mode (and here posterior mean) solves the optimization problem
+\begin_inset Formula 
+\begin{align*}
+\hat{\boldsymbol{\beta}}_{R} & =\arg\min_{\boldsymbol{\beta}}\left\Vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right\Vert ^{2}+\lambda\sum_{j=1}^{p}\beta_{j}^{2}\\
+ & =\arg\min_{\boldsymbol{\beta}}\left\Vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right\Vert ^{2}\text{ s.t. }\left\Vert \boldsymbol{\beta}\right\Vert ^{2}\le s
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+for 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+, allowed to have 
+\begin_inset Formula $p\ge n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Ridge regression is useful for 
+\begin_inset Formula $p>n$
+\end_inset
+
+ and / or correlated predictions.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Lasso regression 
+\begin_inset Formula 
+\[
+\hat{\boldsymbol{\beta}}_{L}=\arg\min_{\boldsymbol{\beta}}\left\Vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta}\right\Vert ^{2}+\lambda\sum_{j=1}^{p}\left|\beta_{j}\right|
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+often have 
+\begin_inset Formula $\hat{\beta}_{L,j}=0$
+\end_inset
+
+ for many 
+\begin_inset Formula $j$
+\end_inset
+
+ provides sparse solution.
+\end_layout
+
+\begin_layout Enumerate
+overshrinkage large 
+\begin_inset Formula $\beta_{j}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
