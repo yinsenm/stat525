@@ -1,0 +1,788 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STAT 525 Lecture 19
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbi}{\mathbb{I}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mbe}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\mvar}{\text{Var}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\trace}{\text{Trace}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cov}{\text{Cov}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\diag}{\text{diag}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poisd}{\text{Poisson}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\gammad}{\text{Gamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\invgammad}{\text{InverseGamma}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logd}{\text{Logarithmic}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\betad}{\text{Beta}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\logit}{\text{logit}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Topics
+\end_layout
+
+\begin_layout Enumerate
+Information criteria
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+AIC, BIC, DIC
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Bayesian Variable Selection
+\end_layout
+
+\begin_layout Standard
+Goal: assume model accuracy and prediction
+\end_layout
+
+\begin_layout Standard
+Deviance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D\left(\theta\right)=-2\underbrace{\log p\left(y\mid\theta\right)}_{\text{likelihood}}+2\log\underbrace{h\left(y\right)}_{\text{doesn't dependent on \ensuremath{\theta}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example: 
+\begin_inset Formula $y_{i}\sim N\left(\theta,\sigma^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+But: adding irrelevant predictors can improve fit
+\end_layout
+
+\begin_layout Standard
+Modification: add penalties for number of parameters
+\end_layout
+
+\begin_layout Subsection
+BIC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+BIC\left(H_{j}\right) & =-2\log\max_{H_{j}}p\left(y\mid\theta\right)+\log\left(n\right)p_{j}\\
+ & =-2\left(\text{log maxmized likelihood}\right)+\log\left(n\right)\left(\text{\# of parameters}\right)\\
+ & =D\left(\hat{\theta}^{MLE}\right)+\log\left(n\right)p_{j}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $H_{j}$
+\end_inset
+
+ is model 
+\begin_inset Formula $j$
+\end_inset
+
+ with parameter 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For large 
+\begin_inset Formula $n$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-2\log\text{BF}\left(H_{0},H_{1}\right)\approx BIC\left(H_{0}\right)-BIC\left(H_{1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+AIC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+AIC & =-2\log\left(\text{max likihood}\right)+2\left(\text{\# of parameters}\right)\\
+ & =D\left(\hat{\theta}^{MLE}\right)+2p_{j}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+DIC
+\end_layout
+
+\begin_layout Standard
+(Deviance information criterion) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D=\mbe\left[D\left(\theta\right)\mid y\right]\approx\dfrac{1}{S}\sum_{s=1}^{S}D\left(\theta^{s}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spegdhalter et al.
+ (2012)
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ be an estimate of (pseudo) true parameter 
+\begin_inset Formula $\theta^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+d\left(y,\theta^{*},\hat{\theta}\right) & =-2\log p\left(y\mid\theta^{*}\right)+2\log p\left(y\mid\hat{\theta}\right)\\
+ & =D\left(\theta^{*}\right)-D\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+relation in 
+\begin_inset Quotes eld
+\end_inset
+
+surprise
+\begin_inset Quotes erd
+\end_inset
+
+ (uncertainty) does to the estimation.
+\end_layout
+
+\begin_layout Standard
+Using 
+\begin_inset Formula $\hat{\theta}=\mbe\left[\theta\mid y\right]$
+\end_inset
+
+ a Bayesian estimate of effective number of parameter is 
+\begin_inset Formula 
+\begin{align*}
+P_{D} & =\mbe_{\left[\theta\mid y\right]}\left[d\left(y,\theta,\hat{\theta}\right)\mid y\right]\\
+ & =\mbe_{\left[\theta\mid y\right]}\left[D\left(\theta^{*}\right)-D\left(\theta\right)\mid y\right]\\
+ & =\bar{D}-D\left(\hat{\theta}\right)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ could be post median or mode
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+DIC & =D\left(\hat{\theta}\right)+2P_{D}\\
+ & =\bar{D}+P_{D}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comments:
+\end_layout
+
+\begin_layout Enumerate
+easy to compute
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $\mbe\left[\theta\mid y\right]$
+\end_inset
+
+ is far from post mode, 
+\begin_inset Formula $P_{D}<0$
+\end_inset
+
+ is possible.
+\end_layout
+
+\begin_layout Enumerate
+For linear model with uniform prior 
+\begin_inset Formula $P_{D}=P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+There are alternative measures to 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What is your likelihood?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y & \sim p\left(y\mid\theta\right)\\
+\theta & \sim p\left(\theta\mid\varphi\right)\\
+ & \rightleftarrows\\
+y & \sim p\left(y\mid\varphi\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In school example, 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+ is school effect, 
+\begin_inset Formula $\varphi=\mu$
+\end_inset
+
+ is the overall effect.
+\end_layout
+
+\begin_layout Section
+Bayesian Variable Selection
+\end_layout
+
+\begin_layout Standard
+Reference: Hoff(ch 9.)
+\end_layout
+
+\begin_layout Standard
+Conceptually simple idea 
+\begin_inset Formula $\beta_{j}=\gamma_{j}b_{j}$
+\end_inset
+
+ 
+\begin_inset Formula $\gamma_{j}\in\left\{ 0,1\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+y_{i} & =\sum_{j=1}^{p}x_{ij}\beta_{j}+\epsilon_{ij}\\
+ & =\sum_{j=1}^{p}x_{ij}\gamma_{j}b_{j}+\epsilon_{ij}\\
+\epsilon_{ij} & \overset{\text{iid}}{\sim}N\left(0,\sigma^{2}\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+\gamma_{j} & =\begin{cases}
+0 & \text{outside prob \ensuremath{j}}\\
+1 & \text{inside prob \ensuremath{j}}
+\end{cases}\\
+b_{j} & =\text{effective size}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prior probability of inclusion:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(\gamma_{j}=1\right)=\pi_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bayesian model solution.
+ Need post for 
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p\left(\boldsymbol{\gamma}\mid\boldsymbol{y},\boldsymbol{X}\right)=\dfrac{p\left(\boldsymbol{\gamma}\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)}{\sum_{\boldsymbol{\gamma}}p\left(\boldsymbol{\gamma}\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right) & =\int\int p\left(\boldsymbol{y},\boldsymbol{\beta},\sigma^{2}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)d\boldsymbol{\beta}d\sigma^{2}\\
+ & =\int\int p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma},\boldsymbol{\beta},\sigma^{2}\right)p\left(\boldsymbol{\beta}\mid\sigma^{2},\boldsymbol{X},\boldsymbol{\gamma}\right)p\left(\sigma^{2}\right)d\boldsymbol{\beta}d\sigma^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Modified g-prior 
+\begin_inset Formula 
+\[
+\left[\boldsymbol{\beta}_{\gamma}\mid\gamma,\sigma^{2},\boldsymbol{X}\right]\sim N\left(0,g\sigma^{2}\left(\boldsymbol{X}_{r}^{T}\boldsymbol{X}_{r}\right)^{-1}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\beta}_{\gamma} & =\boldsymbol{\beta}\left[\left(\boldsymbol{\gamma}=1\right)\right]\\
+\boldsymbol{X}_{\gamma} & =\boldsymbol{X}\left[,\left(\boldsymbol{\gamma}=1\right)\right]\\
+p_{\gamma} & =\sum_{j=1}^{p}\gamma_{j}=\text{\# of nonzero predictors}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Key points: compute 
+\begin_inset Formula $p\left(\boldsymbol{\gamma}\mid\boldsymbol{y},\boldsymbol{X}\right)$
+\end_inset
+
+ directly by integrating 
+\begin_inset Formula $\left(\boldsymbol{\beta},\sigma^{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\tau=\sigma^{-2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Step 1: 
+\series default
+Marginalize over 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma},\tau\right) & =\left(2\pi\right)^{-n/2}\left(1+g\right)^{-p_{\gamma}/2}\left[\tau^{n/2}\exp\left(-\frac{\tau}{2}SSR_{g}^{r}\right)\right]\\
+SSR_{g}^{\gamma} & =\boldsymbol{y}^{T}\left[\mathbb{I}_{n}-\frac{g}{g+1}\boldsymbol{X}_{\gamma}\left[\boldsymbol{X}_{\gamma}^{T}\boldsymbol{X}_{\gamma}\right]^{-1}\boldsymbol{X}_{\gamma}\right]\boldsymbol{y}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Step 2:
+\series default
+ Marginalize out 
+\begin_inset Formula $\tau\sim\gammad\left(a_{\tau},b_{\tau}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \left[\tau^{n/2}\exp\left(-\frac{\tau}{2}SSR_{g}^{r}\right)\right]\dfrac{b_{\tau}^{a_{\tau}}}{\Gamma\left(a_{\tau}\right)}\tau^{a_{\tau}-1}\exp\left(-\tau b_{\tau}\right)\\
+= & \dfrac{b_{\tau}^{a_{\tau}}}{\Gamma\left(a_{\tau}\right)}\tau^{\frac{n}{2}+a_{\tau}-1}\exp\left(-\tau\left[b_{\tau}+SSR_{g}^{r}/2\right]\right)\\
+= & \dfrac{b_{\tau}^{a_{\tau}}}{\Gamma\left(a_{\tau}\right)}\dfrac{\Gamma\left(\frac{n}{2}+a_{\tau}\right)}{\left[SSR_{g}^{\gamma}/2+b_{\tau}\right]^{\frac{n}{2}+a_{\tau}}}\times\gammad\left(\tau;\frac{n}{2}+a_{\tau},SSR_{g}^{\gamma}/2+b_{\tau}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore 
+\begin_inset Formula 
+\begin{align*}
+p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right) & =\left\{ \dfrac{b_{\tau}^{a_{\tau}}}{\Gamma\left(a_{\tau}\right)}\dfrac{\Gamma\left(\frac{n}{2}+a_{\tau}\right)}{\left(2\pi\right)^{\frac{n}{2}}}\right\} \dfrac{\left(1+g\right)^{-\frac{p_{\gamma}}{2}}}{\left[SSR_{g}^{\gamma}/2+b_{\tau}\right]^{\frac{n}{2}+a_{\tau}}}\\
+ & \propto\dfrac{\left(1+g\right)^{-\frac{p_{\gamma}}{2}}}{\left[SSR_{g}^{\gamma}/2+b_{\tau}\right]^{\frac{n}{2}+a_{\tau}}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where see (3.11) and (3.12).
+ Recall 
+\begin_inset Formula 
+\[
+p\left(\gamma\mid\boldsymbol{y},\boldsymbol{X}\right)=\dfrac{p\left(\boldsymbol{\gamma}\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)}{\sum_{\boldsymbol{\gamma}}p\left(\boldsymbol{\gamma}\right)p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Problem: 
+\end_layout
+
+\begin_layout Enumerate
+Must compute 
+\begin_inset Formula $p\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}\right)$
+\end_inset
+
+ for all possible 
+\begin_inset Formula $2^{p}$
+\end_inset
+
+ 
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+.
+ not feasible for moderate 
+\begin_inset Formula $p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+You can use MCMC to explore posterior (stochastic search).
+\end_layout
+
+\begin_layout Standard
+Gibbs sampler: full conditional distribution for 
+\begin_inset Formula $\gamma_{j}$
+\end_inset
+
+ marginalized over 
+\begin_inset Formula $\left(\beta,\sigma^{2}\right)$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\mathbb{P}\left(\gamma_{j}=1\mid\boldsymbol{y},\boldsymbol{X},\gamma_{-j}\right) & =\dfrac{o_{j}}{1+o_{j}}\\
+o_{j} & =\dfrac{\mathbb{P}\left(\gamma_{j}=1\mid\boldsymbol{y},\boldsymbol{X},\gamma_{-j}\right)}{\mathbb{P}\left(\gamma_{j}=0\mid\boldsymbol{y},\boldsymbol{X},\gamma_{-j}\right)}\\
+ & =\dfrac{\mathbb{P}\left(\gamma_{j}=1\mid\gamma_{-j}\right)\mathbb{P}\left(\boldsymbol{y}\mid\boldsymbol{X},\gamma_{-j},\gamma_{j}=1\right)}{\mathbb{P}\left(\gamma_{j}=1\mid\gamma_{-j}\right)\mathbb{P}\left(\boldsymbol{y}\mid\boldsymbol{X},\gamma_{-j},\gamma_{j}=0\right)}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\dfrac{\mathbb{P}\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}_{0}\right)}{\mathbb{P}\left(\boldsymbol{y}\mid\boldsymbol{X},\boldsymbol{\gamma}_{1}\right)} & =\left(1+g\right)^{-\left(p_{\gamma_{0}}-p_{\gamma_{1}}\right)/2}/\left\{ \dfrac{SSR_{g}^{\gamma_{0}}+2b_{\tau}}{SSR_{g}^{\gamma_{1}}+2b_{\tau}}\right\} ^{\frac{n}{2}+a_{\tau}}\\
+ & =BF\left(\boldsymbol{\gamma}_{0},\boldsymbol{\gamma}_{1}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Algorithm:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[\gamma_{j}\mid\boldsymbol{y},\boldsymbol{X},\gamma_{-j}\right]$
+\end_inset
+
+ for each 
+\begin_inset Formula $j$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Construct 
+\begin_inset Formula $\boldsymbol{X}_{\gamma}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[\sigma^{2}\mid\boldsymbol{y},\boldsymbol{X}_{\gamma}\right]$
+\end_inset
+
+ as usual 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left[\beta_{j}\mid\sigma^{2},\boldsymbol{y},\boldsymbol{X}_{\gamma}\right]$
+\end_inset
+
+ as usual
+\end_layout
+
+\begin_layout Standard
+Sample means of 
+\begin_inset Formula $\gamma_{j}^{s}$
+\end_inset
+
+ estimate the marginalized probability of inclusion for predictor 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Sample means of 
+\begin_inset Formula $\beta^{s}$
+\end_inset
+
+ is a model-average estimate (averaging over the model define by each 
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+ so is 
+\begin_inset Formula $\boldsymbol{X\beta}$
+\end_inset
+
+)
+\end_layout
+
+\end_body
+\end_document

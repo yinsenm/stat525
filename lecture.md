@@ -15,3 +15,5 @@ permalink: /lecture/
 - [Lecture 16 lyx]({{ site.baseurl }}/lecture/Lecture_16.lyx), `Thuesday 10/24/2017`
 - [Lecture 17]({{ site.baseurl }}/lecture/Lecture_17.pdf), `Thursday 10/26/2017`
 - [Lecture 17 lyx]({{ site.baseurl }}/lecture/Lecture_17.lyx), `Thursday 10/26/2017`
+- [Lecture 18]({{ site.baseurl }}/lecture/Lecture_18.pdf), `Thursday 10/26/2017`
+- [Lecture 18 lyx]({{ site.baseurl }}/lecture/Lecture_18.lyx), `Thursday 10/26/2017`
